@@ -1,0 +1,78 @@
+plugins {
+    id 'java'
+    id "com.google.protobuf" version "0.8.13"
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+// fix for Execution failed for task ':processResources'. > Entry filter_message.proto is a duplicate but no duplicate handling strategy has been set.
+// while generating protos .class file
+allprojects {
+    apply plugin: 'java'
+
+    tasks.withType(Copy).all {
+        duplicatesStrategy 'exclude'
+    }
+}
+repositories {
+    mavenCentral()
+}
+test {
+    useTestNG()
+}
+//test {
+//    useJUnitPlatform()
+//}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.3.1'
+    implementation group: 'org.apache.poi', name: 'poi', version: '5.0.0'
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+    // Jars for protobuf
+    implementation group: 'com.google.protobuf', name: 'protobuf-java', version: '3.25.2'
+    implementation 'io.grpc:grpc-protobuf:1.32.1'
+    implementation 'io.grpc:grpc-stub:1.32.1'
+    implementation 'io.grpc:grpc-netty:1.32.1'
+
+// to parse string json to protobuf message
+    implementation group: 'com.google.protobuf', name: 'protobuf-java-util', version: '3.25.2'
+
+    //logs
+    implementation 'org.apache.logging.log4j:log4j-api:2.22.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.22.1'
+
+    // https://mvnrepository.com/artifact/org.testng/testng
+    implementation group: 'org.testng', name: 'testng', version: '7.9.0'
+
+}
+//Set the proto and test, main src path
+
+sourceSets {
+    main {
+        java.srcDirs = ['src/main/java','src/main/proto','build/generated/source/proto/main/grpc','build/generated/source/proto/main/java']
+    }
+    test {
+        java.srcDirs = ['src/test/java']
+    }
+}
+//to generate .classes file from proto
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.13.0"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:1.31.1"
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {
+            }
+        }
+    }
+}
