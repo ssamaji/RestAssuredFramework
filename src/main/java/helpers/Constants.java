@@ -1,7 +1,7 @@
 package helpers;
 
 /**
- *
+ * Constants class to store constants
  */
 public class Constants {
     public static final String DEFAULT_EMPLOYEE_NAME = "Tiger Nixon";

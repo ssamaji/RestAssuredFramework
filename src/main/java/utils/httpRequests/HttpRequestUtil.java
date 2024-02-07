@@ -1,4 +1,4 @@
-package org.example.utils.httpRequests;
+package utils.httpRequests;
 
 
 import io.restassured.RestAssured;
@@ -10,6 +10,9 @@ import org.json.simple.JSONObject;
 
 import java.io.IOException;
 
+/**
+ * Http client to make http requests
+ */
 public class HttpRequestUtil {
     /**
      * Factory to make http request

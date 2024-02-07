@@ -3,15 +3,16 @@ package helpers;
 import com.protos.CreateEmployeeRequest;
 
 /**
- *
+ * Entity class to create request payloads
  */
 class EmployeeEntity {
+
     /**
-     *
-     * @param name
-     * @param salary
-     * @param age
-     * @param id
+     * Helper to generate create employee request payloads
+     * @param name - name of the employee
+     * @param salary - salary of the employee
+     * @param age - age of the employee
+     * @param id - employeeId
      * @return
      */
     CreateEmployeeRequest createEmployeeRequest(String name,String salary, String age,int id) {
@@ -25,7 +26,7 @@ class EmployeeEntity {
     }
 
     /**
-     *
+     * Helper to generate create employee request payloads with default values
      * @return
      */
     CreateEmployeeRequest createEmployeeRequest(){

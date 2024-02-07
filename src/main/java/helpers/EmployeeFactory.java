@@ -3,12 +3,11 @@ package helpers;
 import com.protos.CreateEmployeeRequest;
 import com.protos.CreateEmployeeResponse;
 import com.protos.GetEmployeeData;
-import lombok.Getter;
 
 import java.io.IOException;
 
 /**
- *
+ * factory which will http requests helpers
  */
 public class EmployeeFactory {
     private static final EmployeeFactory instance = new EmployeeFactory();
@@ -22,7 +21,7 @@ public class EmployeeFactory {
     private final EmployeeHelper employeeHelper = new EmployeeHelper();
 
     /**
-     *
+     * helper to create employee
      */
 
     public CreateEmployeeResponse createEmployee(CreateEmployeeRequest requestPayload) throws IOException {
@@ -30,8 +29,8 @@ public class EmployeeFactory {
     }
 
     /**
-     *
-     * @param employeeId
+     * Helper to get employee data
+     * @param employeeId - employee id
      * @return
      * @throws IOException
      */

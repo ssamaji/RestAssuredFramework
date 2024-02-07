@@ -2,10 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Practice Suite">
     <listeners>
-        <listener class-name="org.example.utils.listeners.ExtentReporterNG"/>
-        <listener class-name="org.example.utils.listeners.TestListener"/>
+        <listener class-name="utils.listeners.ExtentReporterNG"/>
+        <listener class-name="utils.listeners.TestListener"/>
     </listeners>
-    <test name="Test Basics 1">
+    <test name="Test Basics" parallel = "methods">
         <classes>
             <class name="TestEmployee"/>
         </classes>

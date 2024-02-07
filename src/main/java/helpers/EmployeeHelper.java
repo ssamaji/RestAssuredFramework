@@ -5,18 +5,18 @@ import com.protos.CreateEmployeeRequest;
 import com.protos.CreateEmployeeResponse;
 import com.protos.GetEmployeeData;
 import io.restassured.http.Method;
-import org.example.utils.httpRequests.HttpRequestUtil;
+import utils.httpRequests.HttpRequestUtil;
 
 import java.io.IOException;
 
 /**
- *
+ * Helper class which will have actual http request implementation
  */
 class EmployeeHelper {
     HttpRequestUtil httpRequestUtil = new HttpRequestUtil();
 
     /**
-     *
+     * Helper to make create employee request
      * @param requestPayload
      * @return
      * @throws IOException
@@ -32,7 +32,7 @@ class EmployeeHelper {
     }
 
     /**
-     *
+     * Helper to get employee data
      * @param employeeId
      * @return
      * @throws IOException

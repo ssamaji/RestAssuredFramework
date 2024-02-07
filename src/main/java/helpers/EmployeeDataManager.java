@@ -1,10 +1,9 @@
 package helpers;
 
 import com.protos.CreateEmployeeRequest;
-import lombok.Getter;
 
 /**
- *
+ * Data Manager class which will have helpers (retrieval of data)
  */
 public class EmployeeDataManager {
     private static final EmployeeDataManager instance = new EmployeeDataManager();

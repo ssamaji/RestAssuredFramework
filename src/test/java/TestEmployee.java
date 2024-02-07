@@ -14,7 +14,7 @@ public class TestEmployee {
     private static final EmployeeFactory employeeFactory = EmployeeFactory.getInstance();
     private static final EmployeeValidator employeeValidator = EmployeeValidator.getInstance();
 
-    @Test()
+    @Test(description = "Test case to create employee and validate data")
     public static void createEmployeeTest() throws IOException {
         CreateEmployeeRequest requestPayload = employeeDataManager.createEmployeeRequest("test","123","23",25);
         CreateEmployeeResponse createEmployeeResponse = employeeFactory.createEmployee(requestPayload);
@@ -24,7 +24,7 @@ public class TestEmployee {
         employeeValidator.validateEmployeeId(createEmployeeResponse, String.valueOf(Constants.DEFAULT_EMPLOYEE_ID));
     }
 
-    @Test()
+    @Test(description = "Test case to get employee details and validate data")
     public static void getEmployeeTest() throws IOException {
         GetEmployeeData getEmployeeData = employeeFactory.getEmployee(String.valueOf("1"));
         employeeValidator.validateEmployeeAge(getEmployeeData, Constants.DEFAULT_EMPLOYEE_AGE);
