@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package com.protos;
 option java_multiple_files = true;
-message BookingApiResponse {
+message GetEmployeeData {
 
-  message BookingApiResponseData {
+  message GetEmployeeDataData {
     uint32 id = 1;
     string employee_name = 2;
     uint32 employee_salary = 3;
@@ -13,6 +13,6 @@ message BookingApiResponse {
   }
 
   string status = 1;
-  BookingApiResponseData data = 2;
+  GetEmployeeDataData data = 2;
   string message = 3;
 }

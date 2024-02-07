@@ -47,6 +47,11 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.testng/testng
     implementation group: 'org.testng', name: 'testng', version: '7.9.0'
+    // https://mvnrepository.com/artifact/com.aventstack/extentreports
+    implementation group: 'com.aventstack', name: 'extentreports', version: '5.1.1'
+// https://mvnrepository.com/artifact/com.relevantcodes/extentreports
+    implementation group: 'com.relevantcodes', name: 'extentreports', version: '2.41.2'
+
 
 }
 //Set the proto and test, main src path

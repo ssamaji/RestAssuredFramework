@@ -1,4 +1,4 @@
-package org.example.utility;
+package org.example.utils.listeners;
 
 
 import org.apache.logging.log4j.LogManager;
@@ -9,6 +9,9 @@ import org.testng.ITestResult;
 
 import static org.apache.commons.lang3.StringUtils.repeat;
 public class TestListener implements ITestListener {
+    private static String getTestMethodName(ITestResult iTestResult) {
+        return iTestResult.getMethod().getConstructorOrMethod().getName();
+    }
 
     private static final Logger LOGGER = LogManager.getLogger (TestListener.class);
 
