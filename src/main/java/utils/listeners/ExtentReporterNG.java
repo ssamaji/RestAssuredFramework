@@ -15,7 +15,11 @@ import org.testng.xml.XmlSuite;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-//You have a file which connects to testng
+
+/**
+ * @author ssamaji.
+ * Created Feb 07, 2024.
+ */
 
 //Testng to listen to this extent reports.
 public class ExtentReporterNG implements IReporter {

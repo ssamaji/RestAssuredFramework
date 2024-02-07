@@ -12,6 +12,8 @@ import java.io.IOException;
 
 /**
  * Http client to make http requests
+ * @author ssamaji.
+ * Created Feb 07, 2024.
  */
 public class HttpRequestUtil {
     /**

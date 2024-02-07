@@ -3,6 +3,10 @@ package utils.listeners;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
+/**
+ * @author ssamaji.
+ * Created Feb 07, 2024.
+ */
 public class Retry implements IRetryAnalyzer {
     private        int count  = 0;
     private static int maxTry = 1; //Run the failed test 2 times

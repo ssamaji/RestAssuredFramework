@@ -4,6 +4,8 @@ import com.protos.CreateEmployeeRequest;
 
 /**
  * Entity class to create request payloads
+ * @author ssamaji.
+ * Created Feb 07, 2024.
  */
 class EmployeeEntity {
 

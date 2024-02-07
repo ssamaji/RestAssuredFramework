@@ -6,6 +6,8 @@ import org.testng.asserts.SoftAssert;
 
 /**
  * Validator class to validate api responses
+ * @author ssamaji.
+ * Created Feb 07, 2024.
  */
 public class EmployeeValidator {
     private static final EmployeeValidator instance = new EmployeeValidator();
