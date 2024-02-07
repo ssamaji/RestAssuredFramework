@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.protos;
+option java_multiple_files = true;
+message BookingApiResponse {
+
+  message BookingApiResponseData {
+    uint32 id = 1;
+    string employee_name = 2;
+    uint32 employee_salary = 3;
+    uint32 employee_age = 4;
+    string profile_image = 5;
+  }
+
+  string status = 1;
+  BookingApiResponseData data = 2;
+  string message = 3;
+}
