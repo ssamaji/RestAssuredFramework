@@ -5,6 +5,7 @@ import com.protos.CreateEmployeeRequest;
 import com.protos.CreateEmployeeResponse;
 import com.protos.GetEmployeeData;
 import io.restassured.http.Method;
+import utils.CommonUtils.TestLogger;
 import utils.httpRequests.HttpRequestUtil;
 
 import java.io.IOException;
@@ -14,8 +15,8 @@ import java.io.IOException;
  * @author ssamaji.
  * Created Feb 07, 2024.
  */
-class EmployeeHelper {
-    HttpRequestUtil httpRequestUtil = new HttpRequestUtil();
+class EmployeeHelper extends TestLogger {
+    private HttpRequestUtil httpRequestUtil = HttpRequestUtil.getInstance();
 
     /**
      * Helper to make create employee request
@@ -25,11 +26,12 @@ class EmployeeHelper {
      */
     CreateEmployeeResponse createEmployee(CreateEmployeeRequest requestPayload) throws IOException {
         String request = JsonFormat.printer().print(requestPayload);
-        String responseString = httpRequestUtil.makeRequest(ServiceName.EMPLOYEE_SERVICE.value+EmployeeEndpoints.CREATE_EMPLOYEE,
-                Method.POST,request);
-        System.out.println(" response "+responseString);
+        String responseString = httpRequestUtil.makeRequest(ServiceName.DUMMY_SERVICE.value,
+                Method.POST,request,EmployeeEndpoints.CREATE_EMPLOYEE);
+        logInfo(" response "+responseString);
         CreateEmployeeResponse.Builder employeeResponse = CreateEmployeeResponse.newBuilder();
         JsonFormat.parser().ignoringUnknownFields().merge(responseString, employeeResponse);
+
         return  employeeResponse.build();
     }
 
@@ -40,8 +42,8 @@ class EmployeeHelper {
      * @throws IOException
      */
     GetEmployeeData getEmployee(String employeeId) throws IOException {
-        String responseString = HttpRequestUtil.makeRequest(
-                ServiceName.EMPLOYEE_SERVICE.value+EmployeeEndpoints.GET_EMPLOYEE.replace("{employeeId}",employeeId),Method.GET);
+        String responseString = httpRequestUtil.makeRequest(
+                ServiceName.DUMMY_SERVICE.value,Method.GET,EmployeeEndpoints.GET_EMPLOYEE.replace("{employeeId}",employeeId));
         GetEmployeeData.Builder getEmployeeDataResponse = GetEmployeeData.newBuilder();
         JsonFormat.parser().ignoringUnknownFields().merge(responseString, getEmployeeDataResponse);
         return getEmployeeDataResponse.build();
