@@ -63,10 +63,11 @@ dependencies {
 
 sourceSets {
     main {
-        java.srcDirs = ['src/main/java','src/main/proto','build/generated/source/proto/main/grpc','build/generated/source/proto/main/java']
+        java.srcDirs = ['src/main/java','src/main/proto','build/generated/source/proto/main/grpc','build/generated/source/proto/main/java',
+        'src/main/resources']
     }
     test {
-        java.srcDirs = ['src/test/java']
+        java.srcDirs = ['src/test/java','src/main/resources']
     }
 }
 //to generate .classes file from proto

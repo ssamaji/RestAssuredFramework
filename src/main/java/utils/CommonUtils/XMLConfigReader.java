@@ -8,6 +8,9 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -96,12 +99,17 @@ public class XMLConfigReader {
     private static Element getXmlElements(CommonConstants.CONFIGS configs){
         Element rootElement =null;
         try {
-            // Specify the path to your XML file
-            File xmlFile = new File(propertiesUtil.getConfigProperties().getProperty(String.valueOf(configs)));
+            InputStream inputStream = XMLConfigReader.class.getClassLoader().getResourceAsStream(propertiesUtil.getConfigProperties().getProperty(String.valueOf(configs)));
+            // Handle null InputStream
+            if (inputStream == null) {
+                throw new FileNotFoundException("Resource not found");
+            }
             // Create a DocumentBuilder
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(xmlFile);
+
+            // Parse the XML from the InputStream
+            Document doc = dBuilder.parse(inputStream);
 
             // Normalize the document
             doc.getDocumentElement().normalize();
@@ -112,5 +120,9 @@ public class XMLConfigReader {
             e.printStackTrace();
         }
         return rootElement;
+    }
+    public static void main(String[] args){
+        XMLConfigReader xmlConfigReader = XMLConfigReader.getInstance();
+        xmlConfigReader.getServiceConfig(getXmlElements(CommonConstants.CONFIGS.SERVICE_CONFIG), "dummyService");
     }
 }

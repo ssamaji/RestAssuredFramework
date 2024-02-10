@@ -2,6 +2,7 @@ package utils.CommonUtils;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 /**
  * Class to access properties files
@@ -9,7 +10,6 @@ import java.util.Properties;
  * Created Feb 10, 2024.
  */
 public class PropertiesUtil {
-
     private PropertiesUtil() {}
     private static final PropertiesUtil instance = new PropertiesUtil();
     public static PropertiesUtil getInstance() {
@@ -22,10 +22,7 @@ public class PropertiesUtil {
      * @throws IOException
      */
     public Properties getDBProperties() throws IOException {
-        FileReader reader=new FileReader("/Users/swatisamaji/RestAssuredFramework/src/main/resources/db.properties");
-        Properties properties = new Properties();
-        properties.load(reader);
-        return properties;
+        return loadProperties("db.properties");
     }
 
     /**
@@ -34,9 +31,16 @@ public class PropertiesUtil {
      * @throws IOException
      */
     Properties getConfigProperties() throws IOException {
-        FileReader reader=new FileReader("/Users/swatisamaji/RestAssuredFramework/src/main/resources/config.properties");
+        return loadProperties("config.properties");
+    }
+
+    private Properties loadProperties(String configPropertyFileName) {
         Properties properties = new Properties();
-        properties.load(reader);
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream(configPropertyFileName)) {
+            properties.load(input);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return properties;
     }
 }

@@ -21,7 +21,7 @@ public class TestEmployee extends TestLogger {
     EmployeeValidator employeeValidator = EmployeeValidator.getInstance();
     SqlEntity sqlEntity = SqlEntity.getInstance();
 
-//    @Test(description = "Test case to create employee and validate data")
+    @Test(description = "Test case to create employee and validate data")
     public void createEmployeeTest() throws IOException {
         CreateEmployeeRequest requestPayload = employeeDataManager.createEmployeeRequest("test","123","23",25);
         CreateEmployeeResponse createEmployeeResponse = employeeFactory.createEmployee(requestPayload);
