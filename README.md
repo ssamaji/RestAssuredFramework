@@ -1,7 +1,6 @@
 # RestAssuredFramework
 ----src/main
-         -- Helpers
-                - Service1_Factory
+         -- Helpers                                                                                                                                                                                                                                       - Service1_Factory
                 - Service1_Dataprovider
                 - Service1_Entity
                 - Service1_Endpoint
