@@ -6,8 +6,9 @@
         <listener class-name="utils.listeners.TestListener"/>
     </listeners>
     <test name="Test Basics" parallel = "methods">
+        <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="TestEmployee"/>
+            <class name="MyTestDataProvider"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

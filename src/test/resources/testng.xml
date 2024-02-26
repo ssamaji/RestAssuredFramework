@@ -2,8 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Practice Suite">
     <test name="Test Basics 1">
+        <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="Test01"/>
+            <class name="TestEmployee"/>
+            <class name="MyTestDataProvider"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

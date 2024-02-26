@@ -48,6 +48,7 @@ public class EmployeeValidator extends TestLogger {
      * @param expectedValue
      */
     public void validateEmployeeSalary(CreateEmployeeResponse response,String expectedValue){
+//        assertThat.
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(response.getData().getData().getAge(),expectedValue);
         softAssert.assertAll();

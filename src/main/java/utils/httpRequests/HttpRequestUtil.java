@@ -2,14 +2,20 @@ package utils.httpRequests;
 
 
 import io.restassured.RestAssured;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
 import io.restassured.http.Method;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import utils.CommonUtils.CommonConstants;
 import utils.CommonUtils.TestLogger;
 import utils.CommonUtils.XMLConfigReader;
-
+import io.restassured.path.xml.XmlPath;
+import io.restassured.path.xml.XmlPath.CompatibilityMode;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -58,6 +64,19 @@ public class HttpRequestUtil extends TestLogger {
         Response response = httpRequest.request(method);
         return response.getBody().asString();
     }
+    private void dummyHelper(Method method){
+        Header authorization = new Header("Authorization", "your token");
+        List<Header> headerList = new ArrayList<Header>();
+        headerList.add(authorization);
+        Headers header = new Headers(headerList);
+        RestAssured.baseURI ="";
+        RequestSpecification httpRequest1 = RestAssured.given()
+                .headers(header)
+                .body("")
+                .pathParam("stringWHichNeedsToreplace","")
+                .queryParam("user",2);
+        Response response1 = httpRequest1.request(method);
+    }
 
     public String makeHttpRequest(String serviceName, Method method,String requestBody,String endpoint) throws IOException {
         Map<String, String> serviceDetails = xmlConfigReader.fetchServiceDetails(serviceName);
@@ -66,5 +85,12 @@ public class HttpRequestUtil extends TestLogger {
         httpRequest.body(requestBody).log().all();
         Response response = httpRequest.request(method);
         return response.getBody().asString();
+    }
+
+    private static String convertJsonToXml(String jsonResponse) {
+        // Use XmlPath to convert JSON to XML
+        XmlPath xmlPath = new XmlPath(CompatibilityMode.HTML, jsonResponse);
+        JsonPath jsonPath = new JsonPath(xmlPath.toString());
+        return xmlPath.prettify();
     }
 }

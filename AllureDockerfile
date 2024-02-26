@@ -1,0 +1,10 @@
+# Use the official Allure Docker image as a base
+FROM allureframework/allure-docker-service:2.16.0
+
+# Set environment variables if needed
+
+# Expose the default Allure Server port
+EXPOSE 5050
+
+# Start the Allure Server
+CMD ["allure"]
