@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from version control
-                checkout master
+                checkout scm
             }
         }
 
