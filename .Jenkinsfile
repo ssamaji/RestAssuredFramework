@@ -11,10 +11,13 @@ pipeline {
 
         stage('Build') {
             steps {
+                cleanWs()
                 script {
                  echo 'master build creation in progress'
                     // Example for Maven build
-                    sh './gradlew build'
+                   sh 'echo "Current Directory: ${PWD}"'
+                   sh 'ls -la'
+                   sh './gradlew build'
                 }
             }
         }
