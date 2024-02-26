@@ -25,24 +25,23 @@ public class SqlEntity {
      * @param dbName
      * @param query
      */
-    public ResultSet executeQuery(String dbName, String query) {
+    public ResultSet executeQuery(String dbName, String query) throws ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         Map<String, String> dbDetails = xmlConfigReader.fetchDBDetails(dbName);
         ResultSet resultSet = null;
         try {
-            Connection connection = DriverManager.getConnection(dbDetails.get(CommonConstants.CONFIGS.DB_URL),
-                    dbDetails.get(CommonConstants.CONFIGS.DB_USERNAME), dbDetails.get(CommonConstants.CONFIGS.DB_PASSWORD));
-
+            Connection connection = DriverManager.getConnection("jdbc:mysql://"+dbDetails.get(CommonConstants.CONFIGS.DB_URL.toString())+"/"+dbName,
+                    dbDetails.get(CommonConstants.CONFIGS.DB_USERNAME.toString()), dbDetails.get(CommonConstants.CONFIGS.DB_PASSWORD.toString()));
             Statement statement = connection.createStatement();
-
             // Execute a query
             resultSet = statement.executeQuery(query);
-
-            resultSet.close();
-            statement.close();
-            connection.close();
+//            resultSet.close();
+//            statement.close();
+//            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return resultSet;
     }
 }

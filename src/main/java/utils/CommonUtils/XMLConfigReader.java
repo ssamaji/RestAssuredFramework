@@ -99,23 +99,18 @@ public class XMLConfigReader {
     private static Element getXmlElements(CommonConstants.CONFIGS configs){
         Element rootElement =null;
         try {
-            InputStream inputStream = XMLConfigReader.class.getClassLoader().getResourceAsStream(propertiesUtil.getConfigProperties().getProperty(String.valueOf(configs)));
+            InputStream inputStream = XMLConfigReader.class.getClassLoader()
+                    .getResourceAsStream(propertiesUtil.getConfigProperties().getProperty(String.valueOf(configs)));
             // Handle null InputStream
             if (inputStream == null) {
                 throw new FileNotFoundException("Resource not found");
             }
-            // Create a DocumentBuilder
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-
-            // Parse the XML from the InputStream
             Document doc = dBuilder.parse(inputStream);
-
-            // Normalize the document
             doc.getDocumentElement().normalize();
-
-            // Get the root element
             rootElement = doc.getDocumentElement();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

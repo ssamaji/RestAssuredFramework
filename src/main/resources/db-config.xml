@@ -1,5 +1,5 @@
 <database-config>
-    <database> <database-name>test</database-name><database-url>test</database-url> <username>username</username> <password>your_password</password></database>
+    <database> <database-name>Business</database-name><database-url>127.0.0.1:3306</database-url> <username>arun</username> <password>password</password></database>
     <database><database-name>testDB1</database-name> <database-url>test</database-url> <username>your_username1</username> <password>your_password1</password></database>
     <database><database-name>testDB3</database-name> <database-url>test</database-url> <username>your_username2</username> <password>your_password2</password></database>
 </database-config>
