@@ -17,7 +17,7 @@ pipeline {
                     // Example for Maven build
                    sh 'echo "Current Directory: ${PWD}"'
                    sh 'ls -la'
-                   sh './gradlew build'
+                   sh '/Users/swatisamaji/.jenkins/workspace/CI_CD_Pipeline/RestAssuredFramework/./gradlew build'
                 }
             }
         }
