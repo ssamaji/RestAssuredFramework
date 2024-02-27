@@ -4,6 +4,7 @@
     <listeners>
         <listener class-name="utils.listeners.ExtentReporterNG"/>
         <listener class-name="utils.listeners.TestListener"/>
+        <listener class-name="utils.listeners.RetryListener"/>
     </listeners>
     <test name="Test Basics" parallel = "methods">
         <parameter name="browser" value="chrome"></parameter>

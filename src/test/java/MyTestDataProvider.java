@@ -30,8 +30,8 @@ public class MyTestDataProvider {
     @Test(dataProvider = "orderStatusFlow", dataProviderClass = DataProviderClass.class)
     public void myTest(HashMap<String, String> testData) {
         // Access your test data within the test method
-//        System.out.println("orderWiseDelay: "+testData.get("deliveryStatus"));
-//        System.out.println("orderWiseDelay: "+testData.get("flow"));
+        System.out.println("orderWiseDelay: "+testData.get("deliveryStatus"));
+        System.out.println("orderWiseDelay: "+testData.get("flow"));
 //        System.out.println("orderWiseDelay: "+testData.get("orderWiseDelay"));
 //        System.out.println("DP "+testData);
 
