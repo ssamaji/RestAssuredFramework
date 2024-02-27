@@ -26,7 +26,7 @@ public class TestEmployee extends TestLogger {
     EmployeeValidator employeeValidator = EmployeeValidator.getInstance();
     SqlEntity sqlEntity = SqlEntity.getInstance();
 
-//    @Test(description = "Test case to create employee and validate data")
+    @Test(description = "Test case to create employee and validate data")
     public void createEmployeeTest() throws IOException {
         CreateEmployeeRequest requestPayload = employeeDataManager.createEmployeeRequest("test","123","23",25);
         CreateEmployeeResponse createEmployeeResponse = employeeFactory.createEmployee(requestPayload);
@@ -39,7 +39,7 @@ public class TestEmployee extends TestLogger {
         employeeValidator.validateEmployeeId(createEmployeeResponse, String.valueOf(Constants.DEFAULT_EMPLOYEE_ID));
     }
 
-//    @Test(description = "Test case to get employee details and validate data")
+    @Test(description = "Test case to get employee details and validate data")
     public void getEmployeeTest() throws IOException {
         GetEmployeeData getEmployeeData = employeeFactory.getEmployee(String.valueOf("1"));
         employeeValidator.validateEmployeeAge(getEmployeeData, Constants.DEFAULT_EMPLOYEE_AGE);
@@ -49,8 +49,8 @@ public class TestEmployee extends TestLogger {
     }
 
 
-//    @Parameters("browser")
-//    @Test(description = "dataParameter")
+    @Parameters("browser")
+    @Test(description = "dataParameter")
     public void dataParameter() throws IOException, ClassNotFoundException, SQLException {
         Assert.assertEquals("chrome","chrome");
         ArrayList<CustomerInfo> list =  employeeDataManager.setSqlData(sqlEntity.executeQuery("Business","select * from CustomerInfo;"));
@@ -60,7 +60,7 @@ public class TestEmployee extends TestLogger {
 
 //    @Test(description = "dataParameter" ,dataProvider = "getData", dataProviderClass = DataProviderClass.class)
     @Test(description = "dataParameter")
-            public void dataProviderTests() throws IOException {
+    public void dataProviderTests() throws IOException {
         int actual = 10;
         int actualValue = actual+20;
         Assert.assertEquals(actualValue,30);
