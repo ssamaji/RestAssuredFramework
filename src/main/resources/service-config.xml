@@ -1,5 +1,6 @@
 <services>
     <service><service-name>Service1</service-name> <port>8080</port> <http-type>HTTP</http-type> <url>{service-name.dns.region}</url> </service>
-    <service> <service-name>dummyService</service-name> <port>8443</port> <http-type>HTTPS</http-type> <url>https://dummy.restapiexample.com</url>
-    </service>
+    <service><service-name>dummyService</service-name> <port>8443</port> <http-type>HTTPS</http-type> <url>https://dummy.restapiexample.com</url></service>
+    <service> <service-name>BOOKING</service-name> <port>8443</port> <http-type>HTTPS</http-type> <url>https://restful-booker.herokuapp.com</url></service>
+
 </services>

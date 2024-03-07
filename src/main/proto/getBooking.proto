@@ -1,0 +1,15 @@
+syntax = "proto3";
+/**
+* @author ssamaji.
+ * Created Feb 23, 2024.
+ */
+package com.protos;
+option java_multiple_files = true;
+message GetBooking {
+
+  message GetBookingData {
+    uint32 bookingid = 1;
+  }
+
+  repeated GetBookingData items = 1;
+}

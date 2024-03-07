@@ -1,4 +1,4 @@
-package helpers;
+package helpers.employees;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -6,14 +6,22 @@ import com.protos.CreateEmployeeRequest;
 import org.apache.commons.text.StringEscapeUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.testng.annotations.DataProvider;
 import pojo.CustomerInfo;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Data Manager class which will have helpers (retrieval of data)
@@ -99,5 +107,57 @@ public class EmployeeDataManager {
         jsonObject.put("data",jsonArray);
 
         return  StringEscapeUtils.unescapeJson(jsonObject.toJSONString()).replace("\"{","{").replace("}\"","}");
+    }
+
+    public String await() {
+        AtomicReference<String> apiResponse = null;
+        String apiUrl = "https://api.example.com/data";
+
+        // Set the interval for API calls (e.g., every 2 seconds)
+        long apiCallIntervalSeconds = 2;
+
+        // Create a scheduled executor service
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+        // Create a CompletableFuture that completes with the API response
+        CompletableFuture<Void> apiCallFuture = CompletableFuture.supplyAsync(() -> {
+            while (true) {
+                try {
+                    // Make the API call
+                    apiResponse.set(makeApiCall(apiUrl));
+
+                    // Sleep for the specified interval
+                    TimeUnit.SECONDS.sleep(apiCallIntervalSeconds);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, scheduler);
+
+        // Use the join() method to wait for the completion (optional)
+        apiCallFuture.join();
+
+        // Shutdown the scheduler when done (optional)
+        scheduler.shutdown();
+        return apiResponse.get();
+    }
+    private static String makeApiCall(String apiUrl) throws Exception {
+        // Create an asynchronous HTTP client
+        HttpClient httpClient = HttpClient.newHttpClient();
+
+        // Make the API call
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(apiUrl))
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        // Check if the response meets your expected criteria
+        if (response.statusCode() == 200 && response.body().contains("expectedValue")) {
+            System.out.println("API Response: " + response.body());
+            return response.body();
+        } else {
+            throw new RuntimeException("Unexpected response");
+        }
     }
 }

@@ -7,6 +7,7 @@ package helpers;
  */
 public enum ServiceName {
     DUMMY_SERVICE("dummyService"),
+    BOOKING_SERVICE("BOOKING"),
     EMPLOYEE_SERVICE("https://dummy.restapiexample.com");
 
     public final String value;

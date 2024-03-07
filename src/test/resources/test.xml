@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Practice Suite">
+<suite name="Practice Suite" data-provider-thread-count="30"  thread-count="2">
     <listeners>
         <listener class-name="utils.listeners.ExtentReporterNG"/>
         <listener class-name="utils.listeners.TestListener"/>
         <listener class-name="utils.listeners.RetryListener"/>
     </listeners>
-    <test name="Test Basics" parallel = "methods">
-        <parameter name="browser" value="chrome"></parameter>
+    <test name="Test Basics" parallel = "tests" >
+<!--          thread-count="20">-->
         <classes>
-            <class name="MyTestDataProvider"/>
+<!--            <class name="MyTestDataProvider"/>-->
+            <class name="DemoA"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Test Basics12" parallel = "tests">
+        <classes>
+            <class name="DemoA"/>
+            <class name="DemoB"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

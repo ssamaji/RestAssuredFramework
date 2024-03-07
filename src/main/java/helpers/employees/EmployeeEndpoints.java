@@ -1,4 +1,4 @@
-package helpers;
+package helpers.employees;
 
 /**
  * Endpoint class which will have api endpoints

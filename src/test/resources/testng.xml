@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Practice Suite">
+    <groups><run>
+            <include name="regression"/>
+            <include name="sanity"/>
+        </run>
+    </groups>
     <listeners>
         <listener class-name="utils.listeners.ExtentReporterNG"/>
         <listener class-name="utils.listeners.TestListener"/>
@@ -10,7 +15,7 @@
         <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="TestEmployee"/>
-            <class name="MyTestDataProvider"/>
+<!--            <class name="MyTestDataProvider"/>-->
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -1,4 +1,4 @@
-package helpers;
+package helpers.employees;
 
 import com.protos.CreateEmployeeRequest;
 

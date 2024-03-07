@@ -1,4 +1,4 @@
-FROM adoptopenjdk:11-jdk-hotspot-bionic
+FROM amazoncorretto:11
 
 # Set environment variables
 ENV GRADLE_VERSION=6.0 \
@@ -8,9 +8,7 @@ ENV GRADLE_VERSION=6.0 \
 WORKDIR /RestAssuredFramework
 
 # Install required tools
-RUN apt-get update && \
-    apt-get install -y wget unzip && \
-    rm -rf /var/lib/apt/lists/*
+RUN yum install -y wget unzip curl bash
 
 # Install Gradle
 RUN wget https://services.gradle.org/distributions/gradle-6.0-bin.zip -P /opt && \
@@ -18,10 +16,17 @@ RUN wget https://services.gradle.org/distributions/gradle-6.0-bin.zip -P /opt &&
     ln -s /opt/gradle-6.0/bin/gradle /usr/local/bin/gradle && \
     rm /opt/gradle-6.0-bin.zip
 
+# Install Allure
+RUN curl -o allure.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.16.0/allure-2.16.0.tgz && \
+    tar -zxvf allure.tgz && \
+    rm allure.tgz && \
+    ln -s /RestAssuredFramework/allure-2.16.0/bin/allure /usr/local/bin/allure
+
+# Expose the port that Allure will run on
+EXPOSE 5050
+
 # Copy the local Gradle project to the container
-COPY . .
+COPY build/libs/RestAssuredFramework-1.0-SNAPSHOT.jar /RestAssuredFramework
 
-# Build the project
-RUN ./gradlew build
-
-CMD ["./gradlew", "test"]
+# CMD ["./gradlew", "test"]
+CMD ["java", "-jar", "/RestAssuredFramework/RestAssuredFramework-1.0-SNAPSHOT.jar"]

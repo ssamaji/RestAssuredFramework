@@ -1,0 +1,39 @@
+syntax = "proto3";
+/**
+* @author ssamaji.
+ * Created Feb 23, 2024.
+ */
+package com.protos;
+option java_multiple_files = true;
+
+message CreateBookingRequest {
+
+  message CreateBookingRequestDates {
+    string checkin = 1;
+    string checkout = 2;
+  }
+  string firstname = 1;
+  string lastname = 2;
+  uint32 totalprice = 3;
+  bool depositpaid = 4;
+  CreateBookingRequestDates bookingdates = 5;
+  string additionalneeds = 6;
+}
+
+message CreateBookingResponse {
+  message CreateBookingResponseDates {
+    string checkin = 1;
+    string checkout = 2;
+  }
+  message Booking {
+    string firstname = 1;
+    string lastname = 2;
+    uint64 totalprice = 3;
+    bool depositpaid = 4;
+    CreateBookingResponseDates bookingdates = 5;
+    string additionalneeds = 6;
+  }
+  uint64 bookingid = 1;
+  Booking booking = 2;
+}
+
